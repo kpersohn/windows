@@ -52,6 +52,8 @@ WIN8_X64_PRO ?= iso/en_windows_8_x64_dvd_915440.iso
 WIN8_X64_PRO_CHECKSUM ?= 1ce53ad5f60419cf04a715cf3233f247e48beec4
 WIN8_X86_PRO ?= iso/en_windows_8_x86_dvd_915417.iso
 WIN8_X86_PRO_CHECKSUM ?= 22d680ec53336bee8a5b276a972ceba104787f62
+WIN10_X64_ENTERPRISE ?= iso/en_windows_10_enterprise_2016_ltsb_x64_dvd_9059483.iso
+WIN10_X64_ENTERPRISE_CHECKSUM ?= 031ed6acdc47b8f582c781b039f501d83997a1cf
 WIN81_X64_ENTERPRISE ?= iso/en_windows_8.1_enterprise_with_update_x64_dvd_4065178.iso
 WIN81_X64_ENTERPRISE_CHECKSUM ?= 8fb332a827998f807a1346bef55969c6519668b9
 WIN81_X86_ENTERPRISE ?= iso/en_windows_8.1_enterprise_with_update_x86_dvd_4065185.iso
@@ -274,6 +276,24 @@ test-win8-openssh: test-win8x64-enterprise-ssh test-win8x64-pro-ssh test-win8x86
 test-win8-cygwin: test-win8x64-enterprise-cygwin test-win8x64-pro-cygwin test-win8x86-enterprise-cygwin test-win8x86-pro-cygwin
 
 
+win10: win10-winrm win10-openssh win10-cygwin
+
+win10-winrm: win10x64-enterprise win10x64-pro win10x86-enterprise win10x86-pro
+
+win10-openssh: win10x64-enterprise-ssh win10x64-pro-ssh win10x86-enterprise-ssh win10x86-pro-ssh
+
+win10-cygwin: win10x64-enterprise-cygwin win10x64-pro-cygwin win10x86-enterprise-cygwin win10x86-pro-cygwin
+
+
+test-win10: test-win10-winrm test-win10-openssh test-win10-cygwin
+
+test-win10-winrm: test-win10x64-enterprise test-win10x64-pro test-win10x86-enterprise test-win10x86-pro
+
+test-win10-openssh: test-win10x64-enterprise-ssh test-win10x64-pro-ssh test-win10x86-enterprise-ssh test-win10x86-pro-ssh
+
+test-win10-cygwin: test-win10x64-enterprise-cygwin test-win10x64-pro-cygwin test-win10x86-enterprise-cygwin test-win10x86-pro-cygwin
+
+
 win81: win81-winrm win81-openssh win81-cygwin
 
 win81-winrm: win81x64-enterprise win81x64-pro win81x86-enterprise win81x86-pro
@@ -446,6 +466,8 @@ $(eval $(call BUILDBOX,win8x64-pro,$(WIN8_X64_PRO),$(WIN8_X64_PRO_CHECKSUM)))
 $(eval $(call BUILDBOX,win8x86-enterprise,$(WIN8_X86_ENTERPRISE),$(WIN8_X86_ENTERPRISE_CHECKSUM)))
 
 $(eval $(call BUILDBOX,win8x86-pro,$(WIN8_X86_PRO),$(WIN8_X86_PRO_CHECKSUM)))
+
+$(eval $(call BUILDBOX,win10x64-enterprise,$(WIN10_X64_ENTERPRISE),$(WIN10_X64_ENTERPRISE_CHECKSUM)))
 
 $(eval $(call BUILDBOX,win81x64-enterprise,$(WIN81_X64_ENTERPRISE),$(WIN81_X64_ENTERPRISE_CHECKSUM)))
 
